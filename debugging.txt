@@ -1,0 +1,12 @@
+#### 프로그래밍하면서 디버깅한 부분 체크리스트 (옮길때 유의)
+### 1. !pip install git+https://git@github.com/SKTBrain/KoBERT.git@master 
+- onnxruntime 1.8.0 버전 노후화로 없음. 1.16.0이 최신이고 최소 1.11.0. 
+    git을 받아서 requirements.txt의 버전을 1.16.0으로 수정한 뒤 push한 후 해당
+    주소의 git을 package로 install. 
+- 그 다음 torch 버전이 문제 -> pytorch 설치 사이트 들어가서 torch 설치 라이브러리 코드 다운로드. 
+  이 경우 Authorize Git Credential Manager창이 뜨는데 authorize 해주고 계속 실행해본다.
+- numpy 버전 호환이 안됨 -> numpy 1.13.0 설치 시도 ->error: subprocess-exited-with-error
+  - https://bobbyhadz.com/blog/python-note-this-error-originates-from-subprocess
+    여기서 pip, setuptools, wheel 업그레이드 
+    - pip install wheel setuptools pip --upgrade
+    - pip3 install wheel setuptools pip --upgrade
