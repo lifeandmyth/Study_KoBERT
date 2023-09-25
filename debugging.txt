@@ -10,3 +10,37 @@
     여기서 pip, setuptools, wheel 업그레이드 
     - pip install wheel setuptools pip --upgrade
     - pip3 install wheel setuptools pip --upgrade
+    ... 하지만 그럼에도 numpy는 설치 에러. --use-deprecated-legacy 옵션을 써도 해당 특정 numpy 버전을 설치 못함
+    문제는 생각보다 복잡 >>>>
+    The conflict is caused by:
+    onnxruntime 1.16.0 depends on numpy>=1.24.2
+    gluonnlp 0.6.0 depends on numpy
+    mxnet 1.7.0.post2 depends on numpy<1.17.0 and >=1.8.2
+    onnxruntime 1.16.0 depends on numpy>=1.24.2
+    gluonnlp 0.6.0 depends on numpy
+    mxnet 1.7.0.post1 depends on numpy<1.17.0 and >=1.8.2
+    onnxruntime 1.16.0 depends on numpy>=1.24.2
+    gluonnlp 0.6.0 depends on numpy
+    mxnet 1.6.0 depends on numpy<1.17.0 and >=1.8.2
+    onnxruntime 1.16.0 depends on numpy>=1.24.2
+    gluonnlp 0.6.0 depends on numpy
+    mxnet 1.5.0 depends on numpy<1.17.0 and >=1.8.2
+    onnxruntime 1.16.0 depends on numpy>=1.24.2
+    gluonnlp 0.6.0 depends on numpy
+    mxnet 1.4.1 depends on numpy<1.17.0 and >=1.8.2
+    onnxruntime 1.16.0 depends on numpy>=1.24.2
+    gluonnlp 0.6.0 depends on numpy
+    mxnet 1.4.0.post0 depends on numpy<1.15.0 and >=1.8.2
+    onnxruntime 1.16.0 depends on numpy>=1.24.2
+    gluonnlp 0.6.0 depends on numpy
+    mxnet 1.4.0 depends on numpy<1.15.0 and >=1.8.2
+
+    To fix this you could try to:
+    1. loosen the range of package versions you've specified
+    2. remove package versions to allow pip attempt to solve the dependency conflict
+
+    ## 그래서 버전 정보를 전부 지우고 알아서 dependency 문제 해결하라고 시킴 >>>
+    error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools"
+    이번엔 빌드 툴 더 가져오랜다. 에러문을 검색하자 2015 빌드 툴 3을 다운로드해서 설치하면 된다더라 >>
+    https://somjang.tistory.com/entry/Python-pip-install-%EC%8B%9C-error-Microsoft-Visual-C-140-is-required-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95
+    빌드 도구 링크 타고타고 넘어가 build tool 15 설치하고 재시작
